@@ -1,4 +1,4 @@
-(print "define macro")
+(print "runtime start")
 
 (defn f1 [n]
   (print "f1" n)
@@ -8,21 +8,21 @@
   (print "f2" n)
   (* n 2))
 
-(defn f3 [n]
-  (print "f3" n)
-  (* n 3))
-
 (defmacro f1* [n]
   (, `(f1 ~n) n))
 
-(defmacro f2* [n]
-  (assert (= n 100))
-  (, `(f2 ~n) (* n 2)))
+(defmacro f2* [t]
+  (print "f2*" t)
+  (print (second t))
+  (assert (= 100 (second t)))
+  (, `(f2 (first ~t)) (* (second t) 2)))
 
-(defmacro f3* [n]
-  (assert (= n 1500))
-  (, `(f3 ~n) (* n 3)))
 
-(f1* 10)
-(f2* 100)
-(f3* 1500)
+(f2* (f1* 100))
+
+(-> (f1* 100)
+    (f2*))
+
+; Assertion error!
+; (-> (f1* 54331)
+;    (f2*))
