@@ -117,12 +117,11 @@ The threading macro inserts each expression into the next expression’s first a
 === 実際の使用例
 
 挙動は分かったとして、これだけだと有用性がピンと来ないかもしれません。
-ここでは私が Python から Hy に移植したコードの抜とを比較してみます。
+ここでは私が Python から Hy に移植したコードの抜粋@<fn>{srcurl}とを比較してみます。
+
+//footnote[srcurl][https://github.com/huggingface/pytorch-pretrained-BigGAN/blob/master/pytorch_pretrained_biggan/model.py より]
 
 //emlist{
-# 移植元のPythonコード
-# https://github.com/huggingface/pytorch-pretrained-BigGAN/blob/master/pytorch_pretrained_biggan/model.py より
-
     def forward(self, cond_vector, truncation):
         z = self.gen_z(cond_vector)
 
