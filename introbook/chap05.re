@@ -240,11 +240,15 @@ f1* と f2* の返り値・引数は、関数の評価をクオートしたも�
 (defmacro conv2d* [prev Cout kernel-size stride padding dilation]
   (setv (, N Cin Hin Win nets) (eval prev))
 
-  (setv Hout (int (/ (+ Hin (* 2 padding) (- (* dilation (- kernel-size 1))) -1) stride)))
-  (setv Wout (int (/ (+ Win (* 2 padding) (- (* dilation (- kernel-size 1))) -1) stride)))
+  (setv Hout (int (/ (+ Hin (* 2 padding) 
+    (- (* dilation (- kernel-size 1))) -1) stride)))
+  (setv Wout (int (/ (+ Win (* 2 padding) 
+    (- (* dilation (- kernel-size 1))) -1) stride)))
 
 
-  (,  N Cout Hout Wout `[~nets ``(nn.Conv2d ~~~Cin ~~~Cout ~~~kernel-size ~~~stride ~~~padding ~~~dilation)]))
+  (,  N Cout Hout Wout 
+  `[~nets ``(nn.Conv2d ~~~Cin ~~~Cout ~~~kernel-size 
+    ~~~stride ~~~padding ~~~dilation)]))
 
 ;;; nn.BatchNorm2dのラッパー
 (defmacro bn2d* [prev]

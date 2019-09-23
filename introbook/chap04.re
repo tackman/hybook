@@ -164,7 +164,8 @@ The threading macro inserts each expression into the next expression’s first a
 
 (defn layers-forward [z* layers z truncation]
   (for [layer layers]
-    (cond [(in "GenBlock" layer.__class__.__name__) (setv z* (layer z* z truncation))]
+    (cond [(in "GenBlock" layer.__class__.__name__) 
+      (setv z* (layer z* z truncation))]
           [True (setv z* (layer z*))]))
   z*)
 //}
