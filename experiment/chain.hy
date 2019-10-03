@@ -9,8 +9,8 @@
     b))
 
 (defclass B [][x None]
-  (defn g [self x]
-    (print "something in B" x)
+  (defn g [self x y]
+    (print "something in B" x y)
     (C)))
 
 (defclass C [][]
@@ -19,7 +19,7 @@
 
 (setv a (-> (A)
      (chain f "arg")
-     (chain g "fugafuga")
+     (chain g "fugafuga" "myaaaaa")
      (chain h)
      (chain f "Something result")))
 
