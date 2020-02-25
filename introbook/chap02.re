@@ -226,6 +226,22 @@ Python のようにコロン及びカンマでの区切りはありません。
 
 {} 内の要素が奇数だとコンパイルエラーになります。
 
+==== dictionary要素への代入
+
+dictionary要素をgetで取得し、それに対してsetvを実行します。
+
+//emlist{
+=> (setv dict {"key" "value"})
+=> (setv (get dict "key") "altered")
+=> dict
+{'key': 'altered'}
+
+※NG例
+(setv dict.key "altered")
+//}
+
+Pythonのように、dictionary内の要素に . (ドット)でアクセスはできません。
+
 === list
 
 [] で囲むとリストになります。
