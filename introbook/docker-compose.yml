@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  review:
+    image: vvakame/review
+    entrypoint: /bin/sh -c "cd /work && review-pdfmaker config.yml"
+    volumes:
+      - './:/work'
